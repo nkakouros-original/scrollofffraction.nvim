@@ -17,10 +17,7 @@ To install scrollofffraction, use your favorite Neovim plugin manager.
 ```lua
 {
   'nkakouros-original/scrollofffraction',
-  lazy = true,
-  config = function()
-    require('scrollofffraction').setup()
-  end
+  lazy = true
 }
 ```
 
@@ -54,6 +51,17 @@ To configure the plugin, add a call to `setup` in your Neovim configuration:
 require('scrollofffraction').setup({
   -- Configuration options
 })
+```
+or with lazy
+
+```lua
+{
+  'nkakouros-original/scrollofffraction',
+  lazy = true,
+  opts = {
+    -- Configuration options
+  }
+}
 ```
 
 ## Configuration
