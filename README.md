@@ -1,6 +1,6 @@
 # scrollofffraction
 
-This is Noevim port of https://github.com/drzel/vim-scrolloff-fraction. The
+This is Neovim port of https://github.com/drzel/vim-scrolloff-fraction. The
 Vimscript code was ported to lua and this README was created all with ChatGPT.
 
 scrollofffraction is a Neovim plugin written in Lua that dynamically sets the
