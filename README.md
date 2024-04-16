@@ -13,6 +13,17 @@ context.
 
 To install scrollofffraction, use your favorite Neovim plugin manager. 
 
+### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
+```lua
+{
+  'nkakouros-original/scrollofffraction',
+  lazy = true,
+  config = function()
+    require('scrollofffraction').setup({ --[[Config]]})
+  end
+}
+```
+
 ### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
 ```lua
