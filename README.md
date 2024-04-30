@@ -1,9 +1,9 @@
-# scrollofffraction
+# scrollofffraction.nvim
 
-This is Noevim port of https://github.com/drzel/vim-scrolloff-fraction. The
+This is Neovim port of https://github.com/drzel/vim-scrolloff-fraction. The
 Vimscript code was ported to lua and this README was created all with ChatGPT.
 
-scrollofffraction is a Neovim plugin written in Lua that dynamically sets the
+scrollofffraction.nvim is a Neovim plugin written in Lua that dynamically sets the
 `scrolloff` option based on the current window height and specific file types.
 This plugin enhances the editing experience by maintaining a customizable
 number of lines above and below the cursor, providing a more comfortable visual
@@ -11,15 +11,23 @@ context.
 
 ## Installation
 
-To install scrollofffraction, use your favorite Neovim plugin manager. 
+To install scrollofffraction.nvim, use your favorite Neovim plugin manager. 
+
+### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
+```lua
+{
+  'nkakouros-original/scrollofffraction.nvim',
+  lazy = true
+}
+```
 
 ### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
 ```lua
 use {
-  'nkakouros-original/scrollofffraction',
+  'nkakouros-original/scrollofffraction.nvim',
   config = function()
-    require('scrollofffraction').setup()
+    require('scrollofffraction.nvim').setup()
   end
 }
 ```
@@ -27,9 +35,9 @@ use {
 ### Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'nkakouros-original/scrollofffraction'
+Plug 'nkakouros-original/scrollofffraction.nvim'
 lua << EOF
-require('scrollofffraction').setup()
+require('scrollofffraction.nvim').setup()
 EOF
 ```
 
@@ -40,9 +48,20 @@ After adding the plugin, run `:PlugInstall` in Neovim.
 To configure the plugin, add a call to `setup` in your Neovim configuration:
 
 ```lua
-require('scrollofffraction').setup({
+require('scrollofffraction.nvim').setup({
   -- Configuration options
 })
+```
+or with lazy
+
+```lua
+{
+  'nkakouros-original/scrollofffraction.nvim',
+  lazy = true,
+  opts = {
+    -- Configuration options
+  }
+}
 ```
 
 ## Configuration
@@ -56,7 +75,7 @@ The plugin can be configured by passing a table to the `setup` function. The ava
 Example configuration:
 
 ```lua
-require('scrollofffraction').setup({
+require('scrollofffraction.nvim').setup({
   scrolloff_fraction = 0.3,
   scrolloff_absolute_filetypes = { 'qf', 'markdown' },
   scrolloff_absolute_value = 5
