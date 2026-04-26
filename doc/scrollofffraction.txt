@@ -1,0 +1,62 @@
+*scrollofffraction.txt*  Dynamic scrolloff for Neovim
+
+==============================================================================
+INTRODUCTION                                          *scrollofffraction.nvim*
+
+scrollofffraction.nvim dynamically sets the |scrolloff| option based on the
+current window height, keeping a proportional number of context lines visible
+above and below the cursor regardless of window size.
+
+A Neovim port of vim-scrolloff-fraction:
+https://github.com/drzel/vim-scrolloff-fraction
+
+==============================================================================
+SETUP                                            *scrollofffraction.nvim-setup*
+
+The plugin auto-initialises with defaults via its `plugin/` entry point. To
+customise, call `setup()` from your config: >lua
+
+    require("scrollofffraction").setup({
+      scrolloff_fraction = 0.25,
+    })
+<
+
+==============================================================================
+CONFIGURATION                                   *scrollofffraction.nvim-config*
+
+                                      *scrollofffraction.nvim-scrolloff_fraction*
+scrolloff_fraction ~
+    Fraction of the window height to keep above and below the cursor.
+    Default: `0.25`
+
+                               *scrollofffraction.nvim-scrolloff_absolute_filetypes*
+scrolloff_absolute_filetypes ~
+    List of filetypes that use a fixed |scrolloff| value instead of the
+    fraction. Default: `{ "qf" }`
+
+                                 *scrollofffraction.nvim-scrolloff_absolute_value*
+scrolloff_absolute_value ~
+    Fixed |scrolloff| value used for filetypes in `scrolloff_absolute_filetypes`.
+    Default: `0`
+
+Example: >lua
+
+    require("scrollofffraction").setup({
+      scrolloff_fraction = 0.3,
+      scrolloff_absolute_filetypes = { "qf", "help" },
+      scrolloff_absolute_value = 5,
+    })
+<
+
+==============================================================================
+EVENTS                                          *scrollofffraction.nvim-events*
+
+scrolloff is recalculated on: ~
+    BufEnter, WinEnter, WinNew, VimResized
+
+==============================================================================
+LICENSE                                        *scrollofffraction.nvim-license*
+
+MIT. See LICENSE in the plugin root.
+
+vim:tw=78:ts=8:ft=help:norl:

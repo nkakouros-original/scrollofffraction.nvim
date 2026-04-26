@@ -1,83 +1,68 @@
 # scrollofffraction.nvim
 
-This is Neovim port of https://github.com/drzel/vim-scrolloff-fraction. The
-Vimscript code was ported to lua and this README was created all with ChatGPT.
+Dynamically sets `scrolloff` based on window height, keeping a proportional
+number of context lines visible above and below the cursor regardless of
+window size.
 
-scrollofffraction.nvim is a Neovim plugin written in Lua that dynamically sets the
-`scrolloff` option based on the current window height and specific file types.
-This plugin enhances the editing experience by maintaining a customizable
-number of lines above and below the cursor, providing a more comfortable visual
-context.
+A Neovim port of [vim-scrolloff-fraction](https://github.com/drzel/vim-scrolloff-fraction).
+
+## Requirements
+
+Neovim 0.8+
 
 ## Installation
 
-To install scrollofffraction.nvim, use your favorite Neovim plugin manager. 
+The plugin auto-initialises with defaults via its `plugin/` entry point. If
+you want to customise options, pass them through your plugin manager's config
+or call `setup()` explicitly.
 
-### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
+**[lazy.nvim](https://github.com/folke/lazy.nvim)**
+
 ```lua
 {
-  'nkakouros-original/scrollofffraction.nvim',
-  lazy = true
+  "nkakouros-original/scrollofffraction.nvim",
+  opts = {},
 }
 ```
 
-### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
+**[packer.nvim](https://github.com/wbthomason/packer.nvim)**
 
 ```lua
 use {
-  'nkakouros-original/scrollofffraction.nvim',
+  "nkakouros-original/scrollofffraction.nvim",
   config = function()
-    require('scrollofffraction.nvim').setup()
-  end
-}
-```
-
-### Using [vim-plug](https://github.com/junegunn/vim-plug)
-
-```vim
-Plug 'nkakouros-original/scrollofffraction.nvim'
-lua << EOF
-require('scrollofffraction.nvim').setup()
-EOF
-```
-
-After adding the plugin, run `:PlugInstall` in Neovim.
-
-## Usage
-
-To configure the plugin, add a call to `setup` in your Neovim configuration:
-
-```lua
-require('scrollofffraction.nvim').setup({
-  -- Configuration options
-})
-```
-or with lazy
-
-```lua
-{
-  'nkakouros-original/scrollofffraction.nvim',
-  lazy = true,
-  opts = {
-    -- Configuration options
-  }
+    require("scrollofffraction").setup()
+  end,
 }
 ```
 
 ## Configuration
 
-The plugin can be configured by passing a table to the `setup` function. The available options are:
-
-- `scrolloff_fraction`: Decimal fraction of the window height to keep above and below the cursor (default `0.25`).
-- `scrolloff_absolute_filetypes`: List of filetypes where an absolute `scrolloff` value is used instead of a fraction (default `{ 'qf' }`).
-- `scrolloff_absolute_value`: Absolute number of lines to keep above and below the cursor for specified filetypes (default `0`).
-
-Example configuration:
+Shown below are the defaults:
 
 ```lua
-require('scrollofffraction.nvim').setup({
-  scrolloff_fraction = 0.3,
-  scrolloff_absolute_filetypes = { 'qf', 'markdown' },
-  scrolloff_absolute_value = 5
+require("scrollofffraction").setup({
+  -- Fraction of window height to keep above/below cursor
+  scrolloff_fraction = 0.25,
+  -- Filetypes that use a fixed scrolloff instead of the fraction
+  scrolloff_absolute_filetypes = { "qf" },
+  -- Fixed scrolloff value for the filetypes above
+  scrolloff_absolute_value = 0,
 })
 ```
+
+## Events
+
+scrolloff is recalculated on `BufEnter`, `WinEnter`, `WinNew`, and
+`VimResized`.
+
+## Contributing
+
+Install [stylua](https://github.com/JohnnyMorganz/StyLua) and format before
+submitting a PR:
+
+```sh
+stylua lua/
+```
+
+The CI workflow checks formatting on every push and pull request.
