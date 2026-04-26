@@ -1,1 +1,1 @@
-require('scrollofffraction').setup()
+require("scrollofffraction").setup()
