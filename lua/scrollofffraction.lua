@@ -24,6 +24,8 @@ function M.setup(user_config)
     group = "ScrolloffFraction",
     callback = set_scrolloff,
   })
+
+  set_scrolloff()
 end
 
 return M
